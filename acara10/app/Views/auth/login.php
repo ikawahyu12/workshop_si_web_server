@@ -12,27 +12,68 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login</title>
+    <title>Login - Sistem Informasi Akademik</title>
 
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 40px;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .login-container {
+            width: 350px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
         }
 
         form {
-            width: 300px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
 
         input {
             width: 100%;
             padding: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
         button {
-            padding: 10px 20px;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0d6efd;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0b5ed7;
         }
 
         .alert {
@@ -42,37 +83,55 @@ if (session_status() === PHP_SESSION_NONE) {
             color: #0f5132;
             border: 1px solid #badbcc;
             border-radius: 5px;
-            width: 300px;
-            box-sizing: border-box;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Login</h1>
+    <div class="login-container">
 
-    <?php if (!empty($_SESSION['flash_message'])): ?>
+        <h1>Login</h1>
 
-        <div class="alert">
-            <?= $_SESSION['flash_message'] ?>
-        </div>
+        <p class="description">
+            Sistem Informasi Akademik
+        </p>
 
-        <?php unset($_SESSION['flash_message']); ?>
+        <?php if (!empty($_SESSION['flash_message'])): ?>
 
-    <?php endif; ?>
+            <div class="alert">
+                <?= $_SESSION['flash_message'] ?>
+            </div>
 
-    <form method="POST" action="/workshop_si_web_server/acara6/public/login">
+            <?php unset($_SESSION['flash_message']); ?>
 
-        <label>Username</label>
-        <input type="text" name="username" required>
+        <?php endif; ?>
 
-        <label>Password</label>
-        <input type="password" name="password" required>
+        <form method="POST" action="/workshop_si_web_server/acara6/public/login">
 
-        <button type="submit">Login</button>
+            <label for="username">Username</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Masukkan username"
+                required
+            >
 
-    </form>
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Masukkan password"
+                required
+            >
+
+            <button type="submit">Login</button>
+
+        </form>
+
+    </div>
 
 </body>
 </html>
