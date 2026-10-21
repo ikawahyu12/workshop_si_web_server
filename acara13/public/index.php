@@ -69,7 +69,7 @@ $uri = parse_url(
 // BASE PATH ACARA 13
 // ==============================
 
-$base = '/workshop_si_web_server/acara14/public';
+$base = '/workshop_si_web_server/acara13/public';
 
 
 // Hilangkan base path
