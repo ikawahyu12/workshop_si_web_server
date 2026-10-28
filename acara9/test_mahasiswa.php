@@ -4,6 +4,7 @@ require_once __DIR__ . '/app/Models/Mahasiswa.php';
 
 use App\Models\Mahasiswa;
 
+//bagian yang membuat objek dengan new
 $mahasiswa = new Mahasiswa(
     '12345',
     'Budi Santoso',

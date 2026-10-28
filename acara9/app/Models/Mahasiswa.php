@@ -3,7 +3,8 @@
 namespace App\Models;
 
 class Mahasiswa
-{
+
+    {
     private string $nim;
     private string $nama;
     private string $prodi;

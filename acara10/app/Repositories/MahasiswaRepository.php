@@ -6,6 +6,7 @@ class MahasiswaRepository
 {
     private PDO $db;
 
+    // Mengambil seluruh data
     public function __construct(Database $database)
     {
         $this->db = $database->getConnection();
@@ -23,6 +24,7 @@ class MahasiswaRepository
         return $stmt->fetchAll();
     }
 
+    // Mengambil data berdasarkan ID
     public function find(int $id): ?array
     {
         $stmt = $this->db->prepare(

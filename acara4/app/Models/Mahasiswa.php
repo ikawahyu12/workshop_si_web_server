@@ -35,6 +35,6 @@ class Mahasiswa
 
     public function getAngkatan(): int
     {
-        return 2000 + (int) substr($this->nim, 0, 2);
+        return 2000 + (int) substr($this->nim, 6, 2);
     }
 }

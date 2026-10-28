@@ -2,6 +2,7 @@
 
 class Model
 {
+    //Base Model
     protected PDO $db;
 
     public function __construct()

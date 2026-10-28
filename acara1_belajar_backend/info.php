@@ -1,6 +1,6 @@
 <?php
-$nama = "IKA WAHYUNINGTYAS";
-$nim = "E41251028";
+$nama = "ika wahyuningtyas";
+$nim = "e41251028";
 ?>
 
 <!DOCTYPE html>

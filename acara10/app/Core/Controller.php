@@ -2,6 +2,7 @@
 
 class Controller
 {
+    //Base Controller
     protected function view(string $view, array $data = []): void
     {
         extract($data);

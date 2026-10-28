@@ -4,6 +4,7 @@ require_once __DIR__ . '/../Repositories/MahasiswaRepository.php';
 
 class MahasiswaController
 {
+    //Dependency
     private MahasiswaRepository $repo;
 
     public function __construct(MahasiswaRepository $repo)

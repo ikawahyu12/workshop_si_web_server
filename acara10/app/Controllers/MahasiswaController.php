@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../Repositories/MahasiswaRepository.php';
 
+//Inheritance
 class MahasiswaController extends Controller
 {
     private MahasiswaRepository $repo;
