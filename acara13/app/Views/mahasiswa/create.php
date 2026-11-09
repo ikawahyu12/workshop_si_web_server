@@ -1,3 +1,14 @@
+<?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$flash = $_SESSION['flash'] ?? null;
+$oldInput = $_SESSION['mahasiswa_old_input'] ?? [];
+unset($_SESSION['flash'], $_SESSION['mahasiswa_old_input']);
+
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -23,6 +34,12 @@
 <body>
 
 <div class="container mt-4">
+
+    <?php if ($flash): ?>
+        <div class="alert alert-<?= htmlspecialchars($flash['type'], ENT_QUOTES, 'UTF-8') ?>" role="alert">
+            <?= nl2br(htmlspecialchars($flash['message'], ENT_QUOTES, 'UTF-8')) ?>
+        </div>
+    <?php endif; ?>
 
     <!-- Header -->
     <div class="mb-4">
@@ -62,6 +79,7 @@
                         id="nim"
                         name="nim"
                         placeholder="Masukkan NIM"
+                        value="<?= htmlspecialchars($oldInput['nim'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                         required
                     >
 
@@ -84,6 +102,7 @@
                         id="nama"
                         name="nama"
                         placeholder="Masukkan nama mahasiswa"
+                        value="<?= htmlspecialchars($oldInput['nama'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                         required
                     >
 
@@ -106,6 +125,7 @@
                         id="email"
                         name="email"
                         placeholder="contoh@email.com"
+                        value="<?= htmlspecialchars($oldInput['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                         required
                     >
 
@@ -133,15 +153,15 @@
                             -- Pilih Program Studi --
                         </option>
 
-                        <option value="1">
+                        <option value="1" <?= (string) ($oldInput['prodi_id'] ?? '') === '1' ? 'selected' : '' ?>>
                             Teknik Informatika
                         </option>
 
-                        <option value="2">
+                        <option value="2" <?= (string) ($oldInput['prodi_id'] ?? '') === '2' ? 'selected' : '' ?>>
                             Manajemen Informatika
                         </option>
 
-                        <option value="3">
+                        <option value="3" <?= (string) ($oldInput['prodi_id'] ?? '') === '3' ? 'selected' : '' ?>>
                             Teknik Komputer dan Komunikasi
                         </option>
 
@@ -166,6 +186,7 @@
                         id="angkatan"
                         name="angkatan"
                         placeholder="Contoh: 2025"
+                        value="<?= htmlspecialchars($oldInput['angkatan'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
                         required
                     >
 

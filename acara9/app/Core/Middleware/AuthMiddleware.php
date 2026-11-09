@@ -11,7 +11,7 @@ class AuthMiddleware
         }
 
         if (empty($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-            header('Location: /workshop_si_web_server/acara6/public/login');
+            header('Location: /workshop_si_web_server/acara9/public/login');
             exit;
         }
     }

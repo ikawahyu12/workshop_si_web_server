@@ -25,7 +25,7 @@ class MatakuliahController
                 (int) $_POST['sks']
             );
 
-            header('Location: /workshop_si_web_server/acara8/public/matakuliah');
+            header('Location: /workshop_si_web_server/acara13/public/matakuliah');
             exit;
         }
 
@@ -54,7 +54,7 @@ class MatakuliahController
                 (int) $_POST['sks']
             );
 
-            header('Location: /workshop_si_web_server/acara8/public/matakuliah');
+            header('Location: /workshop_si_web_server/acara13/public/matakuliah');
             exit;
         }
 
@@ -69,7 +69,7 @@ class MatakuliahController
 
         $model->delete($id);
 
-        header('Location: /workshop_si_web_server/acara8/public/matakuliah');
+        header('Location: /workshop_si_web_server/acara13/public/matakuliah');
         exit;
     }
 }

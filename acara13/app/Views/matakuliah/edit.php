@@ -28,7 +28,7 @@
         <div class="card-body">
 
             <form
-                action="/workshop_si_web_server/acara8/public/matakuliah/edit?id=<?= $matakuliah['id'] ?>"
+                action="/workshop_si_web_server/acara13/public/matakuliah/edit?id=<?= $matakuliah['id'] ?>"
                 method="POST"
             >
 
@@ -89,7 +89,7 @@
                     </button>
 
                     <a
-                        href="/workshop_si_web_server/acara8/public/matakuliah"
+                        href="/workshop_si_web_server/acara13/public/matakuliah"
                         class="btn btn-secondary"
                     >
                         Kembali

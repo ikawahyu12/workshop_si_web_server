@@ -20,15 +20,23 @@ class AuthController
 
             $_SESSION['logged_in'] = true;
             $_SESSION['user_name'] = 'Admin';
-            $_SESSION['flash_message'] = 'Selamat datang, Admin';
+            $_SESSION['flash'] = [
+                'type' => 'success',
+                'message' => 'Selamat datang! Anda berhasil login.'
+            ];
 
-            header('Location: /workshop_si_web_server/acara6/public/');
+            header('Location: /workshop_si_web_server/acara13/public/mahasiswa');
             exit;
 
         } else {
 
-            echo "<h3>Username atau password salah</h3>";
-            echo "<a href='/workshop_si_web_server/acara6/public/login'>Kembali ke Login</a>";
+            $_SESSION['flash'] = [
+                'type' => 'danger',
+                'message' => 'Username atau password salah.'
+            ];
+
+            header('Location: /workshop_si_web_server/acara13/public/login');
+            exit;
         }
     }
 
@@ -38,11 +46,13 @@ class AuthController
             session_start();
         }
 
-        $_SESSION['flash_message'] = 'Anda telah logout';
-
         $_SESSION = [];
+        $_SESSION['flash'] = [
+            'type' => 'success',
+            'message' => 'Anda telah logout.'
+        ];
 
-        header('Location: /workshop_si_web_server/acara6/public/login');
+        header('Location: /workshop_si_web_server/acara13/public/login');
         exit;
     }
 }

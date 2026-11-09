@@ -62,7 +62,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <?php endif; ?>
 
-    <form method="POST" action="/workshop_si_web_server/acara6/public/login">
+    <form method="POST" action="/workshop_si_web_server/acara9/public/login">
 
         <label>Username</label>
         <input type="text" name="username" required>

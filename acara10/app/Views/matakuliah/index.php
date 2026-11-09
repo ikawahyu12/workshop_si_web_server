@@ -26,7 +26,7 @@
         </div>
 
         <a
-            href="/workshop_si_web_server/acara8/public/matakuliah/create"
+            href="/workshop_si_web_server/acara10/public/matakuliah/create"
             class="btn btn-primary"
         >
             Tambah Mata Kuliah
@@ -79,14 +79,14 @@
                                 <td>
 
                                     <a
-                                        href="/workshop_si_web_server/acara8/public/matakuliah/edit?id=<?= $mk['id'] ?>"
+                                        href="/workshop_si_web_server/acara10/public/matakuliah/edit?id=<?= $mk['id'] ?>"
                                         class="btn btn-warning btn-sm"
                                     >
                                         Edit
                                     </a>
 
                                     <a
-                                        href="/workshop_si_web_server/acara8/public/matakuliah/delete?id=<?= $mk['id'] ?>"
+                                        href="/workshop_si_web_server/acara10/public/matakuliah/delete?id=<?= $mk['id'] ?>"
                                         class="btn btn-danger btn-sm"
                                         onclick="return confirm('Apakah kamu yakin ingin menghapus data mata kuliah ini?')"
                                     >

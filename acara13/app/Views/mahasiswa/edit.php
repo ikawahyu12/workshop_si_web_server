@@ -1,3 +1,14 @@
+<?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$flash = $_SESSION['flash'] ?? null;
+$oldInput = $_SESSION['mahasiswa_old_input'] ?? [];
+unset($_SESSION['flash'], $_SESSION['mahasiswa_old_input']);
+
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -20,6 +31,12 @@
 
     <div class="container mt-4">
 
+        <?php if ($flash): ?>
+            <div class="alert alert-<?= htmlspecialchars($flash['type'], ENT_QUOTES, 'UTF-8') ?>" role="alert">
+                <?= nl2br(htmlspecialchars($flash['message'], ENT_QUOTES, 'UTF-8')) ?>
+            </div>
+        <?php endif; ?>
+
         <div class="mb-4">
 
             <h1>Edit Mahasiswa</h1>
@@ -35,7 +52,7 @@
             <div class="card-body">
 
                 <form
-                    action="/workshop_si_web_server/acara8/public/mahasiswa/edit?id=<?= $mahasiswa['id'] ?>"
+                    action="/workshop_si_web_server/acara13/public/mahasiswa/edit?id=<?= $mahasiswa['id'] ?>"
                     method="POST"
                 >
 
@@ -50,7 +67,7 @@
                             class="form-control"
                             id="nim"
                             name="nim"
-                            value="<?= htmlspecialchars($mahasiswa['nim']) ?>"
+                            value="<?= htmlspecialchars($oldInput['nim'] ?? $mahasiswa['nim'], ENT_QUOTES, 'UTF-8') ?>"
                             required
                         >
 
@@ -67,7 +84,7 @@
                             class="form-control"
                             id="nama"
                             name="nama"
-                            value="<?= htmlspecialchars($mahasiswa['nama']) ?>"
+                            value="<?= htmlspecialchars($oldInput['nama'] ?? $mahasiswa['nama'], ENT_QUOTES, 'UTF-8') ?>"
                             required
                         >
 
@@ -84,7 +101,7 @@
                             class="form-control"
                             id="email"
                             name="email"
-                            value="<?= htmlspecialchars($mahasiswa['email']) ?>"
+                            value="<?= htmlspecialchars($oldInput['email'] ?? $mahasiswa['email'], ENT_QUOTES, 'UTF-8') ?>"
                             required
                         >
 
@@ -104,17 +121,17 @@
                         >
 
                             <option value="1"
-                                <?= $mahasiswa['prodi_id'] == 1 ? 'selected' : '' ?>>
+                                <?= (string) ($oldInput['prodi_id'] ?? $mahasiswa['prodi_id']) === '1' ? 'selected' : '' ?>>
                                 Teknik Informatika
                             </option>
 
                             <option value="2"
-                                <?= $mahasiswa['prodi_id'] == 2 ? 'selected' : '' ?>>
+                                <?= (string) ($oldInput['prodi_id'] ?? $mahasiswa['prodi_id']) === '2' ? 'selected' : '' ?>>
                                 Manajemen Informatika
                             </option>
 
                             <option value="3"
-                                <?= $mahasiswa['prodi_id'] == 3 ? 'selected' : '' ?>>
+                                <?= (string) ($oldInput['prodi_id'] ?? $mahasiswa['prodi_id']) === '3' ? 'selected' : '' ?>>
                                 Teknik Komputer dan Komunikasi
                             </option>
 
@@ -133,7 +150,7 @@
                             class="form-control"
                             id="angkatan"
                             name="angkatan"
-                            value="<?= htmlspecialchars($mahasiswa['angkatan']) ?>"
+                            value="<?= htmlspecialchars($oldInput['angkatan'] ?? $mahasiswa['angkatan'], ENT_QUOTES, 'UTF-8') ?>"
                             required
                         >
 
@@ -149,7 +166,7 @@
                         </button>
 
                         <a
-                            href="/workshop_si_web_server/acara8/public/mahasiswa"
+                            href="/workshop_si_web_server/acara13/public/mahasiswa"
                             class="btn btn-secondary"
                         >
                             Kembali

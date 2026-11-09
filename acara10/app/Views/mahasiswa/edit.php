@@ -35,7 +35,7 @@
             <div class="card-body">
 
                 <form
-                    action="/workshop_si_web_server/acara8/public/mahasiswa/edit?id=<?= $mahasiswa['id'] ?>"
+                    action="/workshop_si_web_server/acara10/public/mahasiswa/edit?id=<?= $mahasiswa['id'] ?>"
                     method="POST"
                 >
 
@@ -149,7 +149,7 @@
                         </button>
 
                         <a
-                            href="/workshop_si_web_server/acara8/public/mahasiswa"
+                            href="/workshop_si_web_server/acara10/public/mahasiswa"
                             class="btn btn-secondary"
                         >
                             Kembali

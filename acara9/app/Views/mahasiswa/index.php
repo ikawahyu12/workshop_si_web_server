@@ -11,7 +11,7 @@
 
     <form
     method="GET"
-    action="/workshop_si_web_server/acara8/public/mahasiswa"
+    action="/workshop_si_web_server/acara9/public/mahasiswa"
     class="mb-3"
 >
     <div class="input-group">
@@ -32,7 +32,7 @@
         </button>
 
         <a
-            href="/workshop_si_web_server/acara8/public/mahasiswa"
+            href="/workshop_si_web_server/acara9/public/mahasiswa"
             class="btn btn-secondary"
         >
             Reset
@@ -64,7 +64,7 @@
             </div>
 
             <a
-                href="/workshop_si_web_server/acara8/public/mahasiswa/create"
+                href="/workshop_si_web_server/acara9/public/mahasiswa/create"
                 class="btn btn-primary"
             >
                 Tambah Mahasiswa
@@ -129,14 +129,14 @@
                                     <td>
 
                                         <a
-                                            href="/workshop_si_web_server/acara8/public/mahasiswa/edit?id=<?= $mhs['id'] ?>"
+                                            href="/workshop_si_web_server/acara9/public/mahasiswa/edit?id=<?= $mhs['id'] ?>"
                                             class="btn btn-warning btn-sm"
                                         >
                                             Edit
                                         </a>
 
                                         <a
-                                            href="/workshop_si_web_server/acara8/public/mahasiswa/delete?id=<?= $mhs['id'] ?>"
+                                            href="/workshop_si_web_server/acara9/public/mahasiswa/delete?id=<?= $mhs['id'] ?>"
                                             class="btn btn-danger btn-sm"
                                             onclick="return confirm('Apakah kamu yakin ingin menghapus data ini?')"
                                         >

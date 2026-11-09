@@ -73,13 +73,15 @@ class MahasiswaRepository
         return $data ?: null;
     }
 
-    public function create(
-        string $nim,
-        string $nama,
-        string $email,
-        int $prodi_id,
-        int $angkatan
-    ): bool {
+    
+public function create(
+    string $nim,
+    string $nama,
+    string $email,
+    int $prodi_id,
+    int $angkatan
+): bool {
+    try {
         $stmt = $this->db->prepare(
             "INSERT INTO mahasiswa
             (nim, nama, email, prodi_id, angkatan)
@@ -94,7 +96,17 @@ class MahasiswaRepository
             'prodi_id' => $prodi_id,
             'angkatan' => $angkatan
         ]);
+    } catch (PDOException $e) {
+        // NIM duplikat ditangani oleh validasi service.
+        // Exception lain diteruskan agar dapat ditangani
+        // oleh lapisan aplikasi.
+        if ($e->getCode() === '23000') {
+            return false;
+        }
+
+        throw $e;
     }
+}
 
     public function update(
         int $id,

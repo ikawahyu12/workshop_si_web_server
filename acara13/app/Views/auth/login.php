@@ -79,10 +79,20 @@ if (session_status() === PHP_SESSION_NONE) {
         .alert {
             padding: 10px;
             margin: 15px 0;
+            border: 1px solid transparent;
+            border-radius: 5px;
+        }
+
+        .alert-success {
             background-color: #d1e7dd;
             color: #0f5132;
             border: 1px solid #badbcc;
-            border-radius: 5px;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #842029;
+            border: 1px solid #f5c2c7;
         }
     </style>
 </head>
@@ -97,17 +107,17 @@ if (session_status() === PHP_SESSION_NONE) {
             Sistem Informasi Akademik
         </p>
 
-        <?php if (!empty($_SESSION['flash_message'])): ?>
+        <?php if (!empty($_SESSION['flash'])): ?>
 
-            <div class="alert">
-                <?= $_SESSION['flash_message'] ?>
+            <div class="alert alert-<?= htmlspecialchars($_SESSION['flash']['type'], ENT_QUOTES, 'UTF-8') ?>">
+                <?= htmlspecialchars($_SESSION['flash']['message'], ENT_QUOTES, 'UTF-8') ?>
             </div>
 
-            <?php unset($_SESSION['flash_message']); ?>
+            <?php unset($_SESSION['flash']); ?>
 
         <?php endif; ?>
 
-        <form method="POST" action="/workshop_si_web_server/acara6/public/login">
+        <form method="POST" action="/workshop_si_web_server/acara13/public/login">
 
             <label for="username">Username</label>
             <input

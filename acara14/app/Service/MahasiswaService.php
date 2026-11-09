@@ -47,7 +47,9 @@ class MahasiswaService
 
         return [
             'success' => $success,
-            'errors' => $success ? [] : ['database' => 'Data gagal disimpan.']
+            'errors' => $success
+                ? []
+                : ['database' => 'Data gagal disimpan. NIM sudah terdaftar atau terjadi kesalahan database.']
         ];
     }
 
@@ -94,6 +96,8 @@ class MahasiswaService
 
         if ($nim === '') {
             $errors['nim'] = 'NIM wajib diisi';
+        } elseif (!preg_match('/^E[0-9]+$/', $nim)) {
+            $errors['nim'] = 'Format NIM harus diawali huruf E dan diikuti angka saja. Contoh: E41230001';
         }
 
         if ($nama === '') {

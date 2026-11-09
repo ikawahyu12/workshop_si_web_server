@@ -32,7 +32,7 @@
             </div>
 
             <a
-                href="/workshop_si_web_server/acara8/public/prodi/create"
+                href="/workshop_si_web_server/acara14/public/prodi/create"
                 class="btn btn-primary"
             >
                 Tambah Prodi
@@ -82,14 +82,14 @@
                                     <td>
 
                                         <a
-                                            href="/workshop_si_web_server/acara8/public/prodi/edit?id=<?= $p['id'] ?>"
+                                            href="/workshop_si_web_server/acara14/public/prodi/edit?id=<?= $p['id'] ?>"
                                             class="btn btn-warning btn-sm"
                                         >
                                             Edit
                                         </a>
 
                                         <a
-                                            href="/workshop_si_web_server/acara8/public/prodi/delete?id=<?= $p['id'] ?>"
+                                            href="/workshop_si_web_server/acara14/public/prodi/delete?id=<?= $p['id'] ?>"
                                             class="btn btn-danger btn-sm"
                                             onclick="return confirm('Apakah kamu yakin ingin menghapus data prodi ini?')"
                                         >

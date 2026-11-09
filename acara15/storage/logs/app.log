@@ -1,0 +1,2 @@
+2026-10-28 09:42:18 - RuntimeException: Pengujian logging Acara 14
+[2026-11-09 03:05:24] Database Connection Error: SQLSTATE[HY000] [1049] Unknown database 'si_akademik_salah'

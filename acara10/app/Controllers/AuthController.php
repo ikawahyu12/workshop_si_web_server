@@ -22,13 +22,13 @@ class AuthController
             $_SESSION['user_name'] = 'Admin';
             $_SESSION['flash_message'] = 'Selamat datang, Admin';
 
-            header('Location: /workshop_si_web_server/acara6/public/');
+            header('Location: /workshop_si_web_server/acara10/public/');
             exit;
 
         } else {
 
             echo "<h3>Username atau password salah</h3>";
-            echo "<a href='/workshop_si_web_server/acara6/public/login'>Kembali ke Login</a>";
+            echo "<a href='/workshop_si_web_server/acara10/public/login'>Kembali ke Login</a>";
         }
     }
 
@@ -42,7 +42,7 @@ class AuthController
 
         $_SESSION = [];
 
-        header('Location: /workshop_si_web_server/acara6/public/login');
+        header('Location: /workshop_si_web_server/acara10/public/login');
         exit;
     }
 }

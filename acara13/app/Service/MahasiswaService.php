@@ -28,22 +28,31 @@ class MahasiswaService
 
     public function createMahasiswa(array $input): array
     {
-        $errors = $this->validate($input);
+        try {
+            $errors = $this->validate($input);
 
-        if (!empty($errors)) {
+            if (!empty($errors)) {
+                return [
+                    'success' => false,
+                    'errors' => $errors
+                ];
+            }
+
+            $success = $this->repo->create(
+                $input['nim'],
+                $input['nama'],
+                $input['email'],
+                (int) $input['prodi_id'],
+                (int) $input['angkatan']
+            );
+        } catch (PDOException $exception) {
+            error_log('Mahasiswa create failed: ' . $exception->getMessage());
+
             return [
                 'success' => false,
-                'errors' => $errors
+                'errors' => ['Terjadi kesalahan saat menyimpan data. Silakan coba kembali.']
             ];
         }
-
-        $success = $this->repo->create(
-            $input['nim'],
-            $input['nama'],
-            $input['email'],
-            (int) $input['prodi_id'],
-            (int) $input['angkatan']
-        );
 
         return [
             'success' => $success,
@@ -53,23 +62,32 @@ class MahasiswaService
 
     public function updateMahasiswa(int $id, array $input): array
     {
-        $errors = $this->validate($input, $id);
+        try {
+            $errors = $this->validate($input, $id);
 
-        if (!empty($errors)) {
+            if (!empty($errors)) {
+                return [
+                    'success' => false,
+                    'errors' => $errors
+                ];
+            }
+
+            $success = $this->repo->update(
+                $id,
+                $input['nim'],
+                $input['nama'],
+                $input['email'],
+                (int) $input['prodi_id'],
+                (int) $input['angkatan']
+            );
+        } catch (PDOException $exception) {
+            error_log('Mahasiswa update failed: ' . $exception->getMessage());
+
             return [
                 'success' => false,
-                'errors' => $errors
+                'errors' => ['Terjadi kesalahan saat memperbarui data. Silakan coba kembali.']
             ];
         }
-
-        $success = $this->repo->update(
-            $id,
-            $input['nim'],
-            $input['nama'],
-            $input['email'],
-            (int) $input['prodi_id'],
-            (int) $input['angkatan']
-        );
 
         return [
             'success' => $success,

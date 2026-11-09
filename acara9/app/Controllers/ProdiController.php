@@ -24,7 +24,7 @@ class ProdiController
                 $_POST['nama']
             );
 
-            header('Location: /workshop_si_web_server/acara8/public/prodi');
+            header('Location: /workshop_si_web_server/acara9/public/prodi');
             exit;
         }
 
@@ -52,7 +52,7 @@ class ProdiController
                 $_POST['nama']
             );
 
-            header('Location: /workshop_si_web_server/acara8/public/prodi');
+            header('Location: /workshop_si_web_server/acara9/public/prodi');
             exit;
         }
 
@@ -67,7 +67,7 @@ class ProdiController
 
         $model->delete($id);
 
-        header('Location: /workshop_si_web_server/acara8/public/prodi');
+        header('Location: /workshop_si_web_server/acara9/public/prodi');
         exit;
     }
 }

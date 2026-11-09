@@ -1,13 +1,16 @@
+
 <?php
 
 class AuthController
 {
-    public function loginForm()
+    private string $baseUrl = '/workshop_si_web_server/acara14/public';
+
+    public function loginForm(): void
     {
         require_once __DIR__ . '/../Views/auth/login.php';
     }
 
-    public function login()
+    public function login(): void
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -17,32 +20,30 @@ class AuthController
         $password = $_POST['password'] ?? '';
 
         if ($username === 'admin' && $password === 'admin123') {
-
             $_SESSION['logged_in'] = true;
             $_SESSION['user_name'] = 'Admin';
             $_SESSION['flash_message'] = 'Selamat datang, Admin';
 
-            header('Location: /workshop_si_web_server/acara6/public/');
+            header('Location: ' . $this->baseUrl . '/');
             exit;
-
-        } else {
-
-            echo "<h3>Username atau password salah</h3>";
-            echo "<a href='/workshop_si_web_server/acara6/public/login'>Kembali ke Login</a>";
         }
+
+        $_SESSION['flash_message'] = 'Username atau password salah';
+
+        header('Location: ' . $this->baseUrl . '/login');
+        exit;
     }
 
-    public function logout()
+    public function logout(): void
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
-        $_SESSION['flash_message'] = 'Anda telah logout';
-
         $_SESSION = [];
+        session_destroy();
 
-        header('Location: /workshop_si_web_server/acara6/public/login');
+        header('Location: ' . $this->baseUrl . '/login');
         exit;
     }
 }

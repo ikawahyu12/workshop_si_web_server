@@ -1,3 +1,4 @@
+
 <?php
 
 class Controller
@@ -27,5 +28,25 @@ class Controller
             'type' => $type,
             'message' => $message
         ];
+    }
+
+    protected function logError(Throwable $e): void
+    {
+        $logDirectory = __DIR__ . '/../../storage/logs';
+
+        if (!is_dir($logDirectory)) {
+            mkdir($logDirectory, 0775, true);
+        }
+
+        $logFile = $logDirectory . '/app.log';
+
+        $message = date('Y-m-d H:i:s')
+            . ' - '
+            . get_class($e)
+            . ': '
+            . $e->getMessage()
+            . PHP_EOL;
+
+        error_log($message, 3, $logFile);
     }
 }

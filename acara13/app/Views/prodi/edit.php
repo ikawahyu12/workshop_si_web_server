@@ -37,7 +37,7 @@
             <div class="card-body">
 
                 <form
-                    action="/workshop_si_web_server/acara8/public/prodi/edit?id=<?= $prodi['id'] ?>"
+                    action="/workshop_si_web_server/acara13/public/prodi/edit?id=<?= $prodi['id'] ?>"
                     method="POST"
                 >
 
@@ -87,7 +87,7 @@
                         </button>
 
                         <a
-                            href="/workshop_si_web_server/acara8/public/prodi"
+                            href="/workshop_si_web_server/acara13/public/prodi"
                             class="btn btn-secondary"
                         >
                             Kembali

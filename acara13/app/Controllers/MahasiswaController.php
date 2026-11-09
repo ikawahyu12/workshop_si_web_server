@@ -32,15 +32,19 @@ class MahasiswaController extends Controller
 
             if (!$result['success']) {
 
+                $_SESSION['mahasiswa_old_input'] = $_POST;
+
                 $this->setFlash(
                     'danger',
-                    implode('<br>', $result['errors'])
+                    implode("\n", $result['errors'])
                 );
 
                 $this->redirect(
                     '/workshop_si_web_server/acara13/public/mahasiswa/create'
                 );
             }
+
+            unset($_SESSION['mahasiswa_old_input']);
 
             $this->setFlash(
                 'success',
@@ -82,15 +86,19 @@ class MahasiswaController extends Controller
 
             if (!$result['success']) {
 
+                $_SESSION['mahasiswa_old_input'] = $_POST;
+
                 $this->setFlash(
                     'danger',
-                    implode('<br>', $result['errors'])
+                    implode("\n", $result['errors'])
                 );
 
                 $this->redirect(
                     '/workshop_si_web_server/acara13/public/mahasiswa/edit?id=' . $id
                 );
             }
+
+            unset($_SESSION['mahasiswa_old_input']);
 
             $this->setFlash(
                 'success',
