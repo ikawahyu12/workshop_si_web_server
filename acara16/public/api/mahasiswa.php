@@ -163,6 +163,185 @@ try {
 
 
     // =========================
+    // METHOD PUT
+    // =========================
+    elseif ($method === 'PUT') {
+
+        // Mengambil ID dari URL
+        $id = $_GET['id'] ?? null;
+
+        if (!$id || !is_numeric($id) || $id <= 0) {
+
+            http_response_code(400);
+
+            $response = [
+                'success' => false,
+                'message' => 'ID mahasiswa tidak valid'
+            ];
+
+        } else {
+
+            // Membaca JSON dari Postman
+            $input = json_decode(file_get_contents('php://input'), true);
+
+            if (!is_array($input)) {
+
+                http_response_code(400);
+
+                $response = [
+                    'success' => false,
+                    'message' => 'Format JSON tidak valid'
+                ];
+
+            } elseif (
+                empty($input['nim']) ||
+                empty($input['nama']) ||
+                empty($input['email']) ||
+                empty($input['prodi_id']) ||
+                empty($input['angkatan'])
+            ) {
+
+                http_response_code(400);
+
+                $response = [
+                    'success' => false,
+                    'message' => 'Semua data wajib diisi'
+                ];
+
+            } elseif (!filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
+
+                http_response_code(400);
+
+                $response = [
+                    'success' => false,
+                    'message' => 'Format email tidak valid'
+                ];
+
+            } else {
+
+                // Memeriksa apakah mahasiswa tersedia
+                $cek = $pdo->prepare(
+                    "SELECT id FROM mahasiswa WHERE id = :id"
+                );
+
+                $cek->execute(['id' => $id]);
+
+                if (!$cek->fetch()) {
+
+                    http_response_code(404);
+
+                    $response = [
+                        'success' => false,
+                        'message' => 'Data mahasiswa tidak ditemukan'
+                    ];
+
+                } else {
+
+                    // Memeriksa program studi
+                    $cekProdi = $pdo->prepare(
+                        "SELECT id FROM prodi WHERE id = :id"
+                    );
+
+                    $cekProdi->execute([
+                        'id' => $input['prodi_id']
+                    ]);
+
+                    if (!$cekProdi->fetch()) {
+
+                        http_response_code(400);
+
+                        $response = [
+                            'success' => false,
+                            'message' => 'Program studi tidak ditemukan'
+                        ];
+
+                    } else {
+
+                        // Memperbarui data mahasiswa
+                        $query = "UPDATE mahasiswa
+                                  SET nim = :nim,
+                                      nama = :nama,
+                                      email = :email,
+                                      prodi_id = :prodi_id,
+                                      angkatan = :angkatan
+                                  WHERE id = :id";
+
+                        $stmt = $pdo->prepare($query);
+
+                        $stmt->execute([
+                            'nim' => $input['nim'],
+                            'nama' => $input['nama'],
+                            'email' => $input['email'],
+                            'prodi_id' => $input['prodi_id'],
+                            'angkatan' => $input['angkatan'],
+                            'id' => $id
+                        ]);
+
+                        $response = [
+                            'success' => true,
+                            'message' => 'Data mahasiswa berhasil diperbarui'
+                        ];
+                    }
+                }
+            }
+        }
+    }
+
+
+    // =========================
+    // METHOD DELETE
+    // =========================
+    elseif ($method === 'DELETE') {
+
+        // Mengambil ID dari URL
+        $id = $_GET['id'] ?? null;
+
+        // Memeriksa validitas ID
+        if (!$id || !is_numeric($id) || $id <= 0) {
+
+            http_response_code(400);
+
+            $response = [
+                'success' => false,
+                'message' => 'ID mahasiswa tidak valid'
+            ];
+
+        } else {
+
+            // Memeriksa apakah mahasiswa tersedia
+            $cek = $pdo->prepare(
+                "SELECT id FROM mahasiswa WHERE id = :id"
+            );
+
+            $cek->execute(['id' => $id]);
+
+            if (!$cek->fetch()) {
+
+                http_response_code(404);
+
+                $response = [
+                    'success' => false,
+                    'message' => 'Data mahasiswa tidak ditemukan'
+                ];
+
+            } else {
+
+                // Menghapus data mahasiswa
+                $query = "DELETE FROM mahasiswa WHERE id = :id";
+
+                $stmt = $pdo->prepare($query);
+                $stmt->execute(['id' => $id]);
+
+                $response = [
+                    'success' => true,
+                    'message' => 'Data mahasiswa berhasil dihapus'
+                ];
+            }
+        }
+    }
+
+
+    // =========================
     // METHOD LAIN
     // =========================
     else {
