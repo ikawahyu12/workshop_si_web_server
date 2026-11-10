@@ -1,0 +1,12 @@
+
+RewriteEngine On
+
+# Routing API Mahasiswa
+RewriteRule ^api/mahasiswa/?$ api/mahasiswa.php [QSA,L]
+RewriteRule ^api/mahasiswa/([0-9]+)/?$ api/mahasiswa.php?id=$1 [QSA,L]
+
+# Routing halaman utama
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^ index.php [QSA,L]
