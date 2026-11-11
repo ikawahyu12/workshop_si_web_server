@@ -35,6 +35,8 @@ class MahasiswaController
     // Menambahkan mahasiswa
     public function store(): void
     {
+        Auth::requireAuth();
+
         $data = json_decode(file_get_contents('php://input'), true);
 
         $errors = [];
@@ -72,14 +74,18 @@ class MahasiswaController
                 'Data berhasil ditambahkan',
                 ['id' => $id]
             );
-        } catch (InvalidArgumentException $e) {
-            Response::json(409, false, $e->getMessage());
-        }
-    }
+               } catch (InvalidArgumentException $e) {
+                    Response::json(409, false, $e->getMessage());
+                } catch (RuntimeException $e) {
+                    Response::json(500, false, $e->getMessage());
+                }
+            }
 
     // Memperbarui mahasiswa
     public function update($id): void
     {
+        Auth::requireAuth();
+
         $mahasiswa = $this->model->find((int) $id);
 
         if (!$mahasiswa) {
@@ -107,12 +113,16 @@ class MahasiswaController
             Response::json(200, true, 'Data berhasil diperbarui');
         } catch (InvalidArgumentException $e) {
             Response::json(409, false, $e->getMessage());
+        } catch (RuntimeException $e) {
+            Response::json(500, false, $e->getMessage());
         }
     }
 
     // Menghapus mahasiswa
     public function destroy($id): void
     {
+        Auth::requireAuth();
+
         $mahasiswa = $this->model->find((int) $id);
 
         if (!$mahasiswa) {
