@@ -35,7 +35,7 @@ class MahasiswaController
     // Menambahkan mahasiswa
     public function store(): void
     {
-        Auth::requireAuth();
+        Auth::requireAdmin();
 
         $data = json_decode(file_get_contents('php://input'), true);
 
@@ -84,7 +84,7 @@ class MahasiswaController
     // Memperbarui mahasiswa
     public function update($id): void
     {
-        Auth::requireAuth();
+        Auth::requireAdmin();
 
         $mahasiswa = $this->model->find((int) $id);
 
@@ -121,7 +121,7 @@ class MahasiswaController
     // Menghapus mahasiswa
     public function destroy($id): void
     {
-        Auth::requireAuth();
+        Auth::requireAdmin();
 
         $mahasiswa = $this->model->find((int) $id);
 

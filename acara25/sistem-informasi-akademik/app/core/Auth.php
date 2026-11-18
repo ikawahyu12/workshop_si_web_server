@@ -137,4 +137,20 @@ class Auth
 
         return $payload;
     }
+
+    // Memastikan pengguna memiliki role admin
+    public static function requireAdmin(): array
+    {
+        $payload = self::requireAuth();
+
+        if ($payload['role'] !== 'admin') {
+            Response::json(
+                403,
+                false,
+                'Akses ditolak, hanya admin yang diizinkan'
+            );
+        }
+
+        return $payload;
+    }
 }
