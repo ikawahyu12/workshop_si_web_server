@@ -1,0 +1,56 @@
+
+openapi: 3.0.0
+
+info:
+  title: API Sistem Informasi Akademik (MVC)
+  version: 1.0.0
+
+servers:
+  - url: http://localhost/sistem-informasi-akademik/public
+
+paths:
+  /login:
+    post:
+      summary: Autentikasi pengguna (AuthController::login)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login berhasil
+        '401':
+          description: Kredensial tidak valid
+
+  /mahasiswa:
+    get:
+      summary: Mengambil data mahasiswa (MahasiswaController::index)
+      parameters:
+        - name: id
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Data berhasil diambil
+
+    post:
+      summary: Menambahkan data mahasiswa (MahasiswaController::store)
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          description: Data berhasil ditambahkan
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
