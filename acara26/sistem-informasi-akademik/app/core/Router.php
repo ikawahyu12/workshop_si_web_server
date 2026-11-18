@@ -44,7 +44,14 @@ class Router
         }
 
         // Routing CRUD
-        switch ($_SERVER['REQUEST_METHOD']) {
+$method = $_SERVER['REQUEST_METHOD'];
+
+// Mendukung method override untuk FormData
+if ($method === 'POST' && isset($_POST['_method'])) {
+    $method = strtoupper($_POST['_method']);
+}
+
+        switch ($method) {
             case 'GET':
                 $controller->index();
                 break;
